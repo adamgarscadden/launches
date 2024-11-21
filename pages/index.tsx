@@ -1,28 +1,38 @@
-import { SpaceXIntAPIResponse } from '../APIResponsesTypes';
-import MissionFooter from '../components/MissionFooter';
+import { fetchSpaceXData } from '../utils/fetchSpaceXData';
+import Head from 'next/head';
+import ErrorBoundary from '../components/ErrorBoundary';
 import MissionHeader from '../components/MissionHeader';
 import MissionMain from '../components/MissionMain';
+import dynamic from 'next/dynamic';
+import { SpaceXIntAPIResponse } from '../APIResponsesTypes';
+
+const MissionFooter = dynamic(() => import('../components/MissionFooter'), { ssr: false });
 
 export async function getStaticProps() {
-  const res = await fetch('https://api.spacexdata.com/v5/launches');
-  const data: Array<SpaceXIntAPIResponse> = await res.json();
-
-  if (!data) {
+  try {
+    const data = await fetchSpaceXData();
+    return {
+      props: { spaceXData: data.slice(0, 50) },
+      revalidate: 60,
+    };
+  } catch {
     return {
       notFound: true,
     };
   }
-
-  return {
-    props: { spacexData: data.slice(0, 50) },
-  };
 }
 
-export default function Home({ spacexData }: { spacexData: SpaceXIntAPIResponse[] }): JSX.Element {
+export default function Home({ spaceXData }: { spaceXData: SpaceXIntAPIResponse[] }): JSX.Element {
   return (
     <>
+      <Head>
+        <title>SpaceX Launches</title>
+        <meta name="description" content="Browse recent SpaceX launches." />
+      </Head>
       <MissionHeader />
-      <MissionMain data={spacexData} />
+      <ErrorBoundary>
+        <MissionMain data={spaceXData} />
+      </ErrorBoundary>
       <MissionFooter />
     </>
   );
