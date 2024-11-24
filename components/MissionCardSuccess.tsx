@@ -9,14 +9,14 @@ const MissionCardSuccess = ({ heading, success }: SpaceXIntCardSucess): JSX.Elem
         The mission was a
         {success ? (
           <>
-            <span className="border-2 border-green p-1 ml-1" data-testid="mission-card-success-true">
+            <span className="border-2 border-green p-1 ml-1 text-green" data-testid="mission-card-success-true">
               success
             </span>
             <span> 🤩</span>
           </>
         ) : (
           <>
-            <span className="border-2 border-red p-1 ml-1" data-testid="mission-card-success-false">
+            <span className="border-2 border-red p-1 ml-1 text-red" data-testid="mission-card-success-false">
               failure
             </span>
             <span> 😣</span>

@@ -1,9 +1,6 @@
 export interface SpaceXIntAPIResponse {
   name: string;
   date_utc: number;
-  cores: {
-    core: number;
-  };
   payloads: string[];
   links: {
     patch: {

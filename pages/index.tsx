@@ -24,6 +24,8 @@ export default function Home({ spaceXData }: { spaceXData: SpaceXIntAPIResponse[
   const [currentIndex, setCurrentIndex] = useState(4);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  // console.log('spaceXData', spaceXData);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
