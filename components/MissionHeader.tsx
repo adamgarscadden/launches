@@ -10,7 +10,7 @@ const MissionHeader = (): JSX.Element => {
       </Head>
       <header className="border-b p-5">
         <h1 className="font-sans uppercase text-3xl md:text-5xl pl-3" data-testid="mission-title">
-          🌕 SpaceX Launches 🚀
+          🚀 SpaceX Launches
         </h1>
       </header>
     </>

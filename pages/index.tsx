@@ -3,10 +3,9 @@ import Head from 'next/head';
 import ErrorBoundary from '../components/ErrorBoundary';
 import MissionHeader from '../components/MissionHeader';
 import MissionMain from '../components/MissionMain';
-import dynamic from 'next/dynamic';
+import MissionFooter from '../components/MissionFooter';
 import { SpaceXIntAPIResponse } from '../APIResponsesTypes';
 import { useEffect, useState, useRef } from 'react';
-const MissionFooter = dynamic(() => import('../components/MissionFooter'), { ssr: false });
 
 export async function getStaticProps() {
   try {
@@ -60,7 +59,7 @@ export default function Home({ spaceXData }: { spaceXData: SpaceXIntAPIResponse[
     <>
       <Head>
         <title>SpaceX Launches</title>
-        <meta name="description" content="Browse SpaceX launches up to 2018." />
+        <meta name="description" content="Browse SpaceX launches." />
       </Head>
       <MissionHeader />
       <ErrorBoundary>
