@@ -30,10 +30,14 @@ export default function Home({ spaceXData }: { spaceXData: SpaceXIntAPIResponse[
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          loadMoreData();
+          loadMoreData(); // trigger data loading function
         }
       },
-      { threshold: 1.0 }
+      {
+        root: null,
+        rootMargin: '100px', // preload when the element is 100px within the viewport
+        threshold: 0.1, // trigger when at least 10% of the element is visible
+      }
     );
 
     if (loadMoreRef.current) {
