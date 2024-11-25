@@ -13,7 +13,7 @@ const MissionCard = ({ name, date_utc, payloads, success, failures, links }: Spa
         <MissionCardMeta title="Launch Date" text={moment(date_utc).format('MMMM Do YYYY, h:mm:ss a')} />
         <MissionCardMeta title="Payload id(s)" multiples={payloads} />
         {success !== null && <MissionCardSuccess heading="Mission Status" success={success} />}
-        {!success && failures && <MissionCardFailures failures={failures[0].reason} />}
+        {!success && failures && <MissionCardFailures failures={failures[0]?.reason} />}
       </div>
       {links && links.patch.small && <MissionCardImage image={links.patch.small} alt={name + ' badge'} />}
     </article>

@@ -73,7 +73,7 @@ export default function Home({ spaceXData }: { spaceXData: SpaceXIntAPIResponse[
       </ErrorBoundary>
       <MissionFooter />
       {/* Infinite scroll trigger */}
-      <div ref={loadMoreRef} style={{ height: '50px', background: 'transparent' }} />
+      <div ref={loadMoreRef} className="bg-grey" style={{ height: '50px' }} />
     </>
   );
 }
